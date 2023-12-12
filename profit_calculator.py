@@ -1,46 +1,48 @@
-from tkinter import *
+from tkinter import *                     #import module ที่ต้องใช้
 from tkinter import messagebox
 
-profit = 0
+profit = 0                #นิยามตัวแปรสำหรับเก็บค่ากำไร เปอร์เซ็น และผลลัพธ์จากการคำนวณ
 percent = 0
 result = ''
-def calculate():
-    global result
-    try:
+
+def calculate():            #นิยามฟังก์ชันที่จะคำนวณกำไร-ขาดทุน
+    try:                    #ใช้คำสั่ง try-exception เพื่อตรวจจับข้อผิดพลาด กรณีผู้ใช้กรอกข้อมูลไม่ถูกต้อง
         profit = float(income_input.get()) - float(cost_input.get())
         percent = profit / float(cost_input.get()) * 100
-        if profit > 0:
+        if profit >= 0:                                      #ตรวจสอบว่าได้กำไรหรือขาดทุน
             result = "ได้กำไร "+ str(abs(profit)) +" บาท \nคิดเป็น "+ str(abs(percent)) +" %"
             result_output.config(text=result)
-        elif profit <0:
+        elif profit < 0:
             result = 'ขาดทุน '+str(abs(profit))+" บาท \nคิดเป็น "+ str(abs(percent)) + " %" 
             result_output.config(text=result)
     except:
         messagebox.showerror("Error", "ข้อมูลไม่ถูกต้อง")
-win = Tk()
-win.title('Profit and Loss Calculator')
-win.geometry('800x600')
-win.config(bg='#B0E0E6')
+
+win = Tk()                                      #สร้างหน้าต่างโปรแกรม
+win.title('Profit and Loss Calculator')         #ใส่ Title ของโปรแกรม
+win.geometry('800x600')                 #กำหนดขนาดหน้าต่าง
+win.config(bg='#B0E0E6')                #กำหนดสีพื้นหลัง
 win.option_add('*Label.background', '#B0E0E6')
 
 label_head1 = Label(text="โปรแกรมคำนวณกำไร-ขาดทุน", font='tahoma 16 bold')
-label_head1.pack()
+label_head1.pack(pady=5)
 
 label_income = Label(text='รายได้' , font='tahoma 14 ')
-label_income.pack()
+label_income.pack(pady=5)
 
-income_input = Entry()
-income_input.pack()
+income_input = Entry()              #สร้างช่องรับค่ารายได้
+income_input.pack(pady=5)
 
-label_cost = Label(text='ต้นทุน', font='tahoma 14')
-label_cost.pack()
+label_cost = Label(text='ต้นทุน', font='tahoma 14')           
+label_cost.pack(pady=5)
 
-cost_input = Entry()
-cost_input.pack()
+cost_input = Entry()                     #สร้างช่องรับค่าต้นทุน
+cost_input.pack(pady=5)
 
-button = Button(text='คำนวณ', command=calculate)
-button.pack()
-result_output = Label()
-result_output.pack()
+button = Button(text='คำนวณ', command=calculate)       #ปุ่มสำหรับกดเพื่อคำนวณ
+button.pack(pady=5)
+
+result_output = Label(font='tahoma 12')             #แสดงผลลัพธ์การคำนวณ
+result_output.pack(pady=5)
 
 win.mainloop()
