@@ -5,15 +5,19 @@ profit = 0                #นิยามตัวแปรสำหรับ�
 percent = 0
 result = ''
 
+
 def calculate():            #นิยามฟังก์ชันที่จะคำนวณกำไร-ขาดทุน
     try:                    #ใช้คำสั่ง try-exception เพื่อตรวจจับข้อผิดพลาด กรณีผู้ใช้กรอกข้อมูลไม่ถูกต้อง
         profit = float(income_input.get()) - float(cost_input.get())
         percent = profit / float(cost_input.get()) * 100
+        profit_d = round(profit, 2)
+        percent_d = round(percent, 2)
+        
         if profit >= 0:                                      #ตรวจสอบว่าได้กำไรหรือขาดทุน
-            result = "ได้กำไร "+ str(abs(profit)) +" บาท \nคิดเป็น "+ str(abs(percent)) +" %"
+            result = "ได้กำไร "+ str(abs(profit_d)) +" บาท \nคิดเป็น "+ str(abs(percent_d)) +" %"
             result_output.config(text=result)
         elif profit < 0:
-            result = 'ขาดทุน '+str(abs(profit))+" บาท \nคิดเป็น "+ str(abs(percent)) + " %" 
+            result = 'ขาดทุน '+str(abs(profit_d))+" บาท \nคิดเป็น "+ str(abs(percent_d)) + " %" 
             result_output.config(text=result)
     except:
         messagebox.showerror("Error", "ข้อมูลไม่ถูกต้อง")
