@@ -21,9 +21,10 @@ def calculate():            #นิยามฟังก์ชันที่จ
             result_output.config(text=result)
     except:
         messagebox.showerror("Error", "ข้อมูลไม่ถูกต้อง")
-def reset():
-    print('Reset')
-
+def reset():                        #ฟังก์ชันสำหรับรีเซตข้อมูลการแสดงผล
+    result_output.config(text='')
+    cost_input.delete(0,'end')
+    income_input.delete(0,'end')
 
 win = Tk()                                      #สร้างหน้าต่างโปรแกรม
 win.title('Profit and Loss Calculator')         #ใส่ Title ของโปรแกรม
@@ -46,13 +47,13 @@ label_cost.pack(pady=5)
 cost_input = Entry()                     #สร้างช่องรับค่าต้นทุน
 cost_input.pack(pady=5)
 
-button = Button(text='คำนวณ', command=calculate)   #ปุ่มสำหรับกดเพื่อคำนวณ
+button = Button(text='คำนวณ', command=calculate)       #ปุ่มสำหรับกดเพื่อคำนวณ
 button.pack(pady=5)
 
 result_output = Label(font='tahoma 12')             #แสดงผลลัพธ์การคำนวณ
 result_output.pack(pady=5)
 
-reset_button = Button(text="Reset", command=reset)
+reset_button = Button(text="Reset", command=reset) #ปุ่มรีเซตข้อมูล output และ input ที่ผู้ใช้กรอก
 reset_button.pack(pady=10)
 
 win.mainloop()
